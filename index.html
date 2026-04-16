@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vu Minh DINH – Software Engineer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1a6b8a;
+      --accent-light: #e8f4f8;
+      --text: #1e2022;
+      --muted: #5a6470;
+      --border: #d0dce4;
+      --bg: #ffffff;
+      --sidebar-bg: #f4f8fb;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text);
+      background: #e9eef2;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Page shell ── */
+    .page {
+      max-width: 960px;
+      margin: 32px auto;
+      background: var(--bg);
+      box-shadow: 0 4px 24px rgba(0,0,0,.12);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--accent);
+      color: #fff;
+      padding: 32px 40px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .header-name h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+
+    .header-name .title {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: .88;
+      margin-top: 4px;
+    }
+
+    .header-contact {
+      font-size: 13px;
+      text-align: right;
+      opacity: .92;
+      line-height: 1.8;
+    }
+
+    .header-contact a { color: #fff; }
+
+    /* ── Body layout ── */
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+    }
+
+    /* ── Main column ── */
+    .main { padding: 32px 36px; border-right: 1px solid var(--border); }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      padding: 32px 24px;
+      background: var(--sidebar-bg);
+    }
+
+    /* ── Section titles ── */
+    .section-title {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 5px;
+      margin-bottom: 18px;
+    }
+
+    section { margin-bottom: 32px; }
+    section:last-child { margin-bottom: 0; }
+
+    /* ── Experience entry ── */
+    .exp-entry { margin-bottom: 22px; }
+    .exp-entry:last-child { margin-bottom: 0; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+
+    .exp-company {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .company-logo {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      border-radius: 3px;
+      flex-shrink: 0;
+      background: #fff;
+    }
+
+    .exp-location {
+      font-size: .8rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .exp-meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin-bottom: 6px;
+    }
+
+    .exp-period {
+      font-size: .8rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .exp-role {
+      font-size: .82rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .exp-project {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .exp-project strong { color: var(--text); font-style: normal; }
+
+    .exp-entry ul {
+      padding-left: 16px;
+      font-size: .84rem;
+      color: var(--text);
+    }
+
+    .exp-entry ul li { margin-bottom: 3px; }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 7px;
+    }
+
+    .tag {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 3px;
+      padding: 1px 7px;
+      font-size: .73rem;
+      font-weight: 600;
+    }
+
+    /* ── Projects for fun ── */
+    .project-entry { margin-bottom: 14px; }
+    .project-entry:last-child { margin-bottom: 0; }
+
+    .project-name {
+      font-weight: 700;
+      font-size: .9rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .project-year { color: var(--muted); font-weight: 400; font-size: .8rem; }
+    .project-desc { font-size: .82rem; color: var(--muted); margin: 3px 0 5px; }
+
+    /* ── Sidebar sections ── */
+    .sidebar .section-title { font-size: .68rem; }
+
+    .edu-entry { margin-bottom: 14px; }
+    .edu-entry:last-child { margin-bottom: 0; }
+    .edu-school { font-weight: 700; font-size: .88rem; }
+    .edu-degree { font-size: .82rem; font-style: italic; color: var(--muted); }
+    .edu-meta { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+    /* Skills */
+    .skill-category { margin-bottom: 10px; }
+    .skill-label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .skill-value {
+      font-size: .78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Languages */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .lang-name { font-size: .82rem; font-weight: 600; }
+    .dots { display: flex; gap: 3px; }
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .dot.filled { background: var(--accent); }
+
+    /* Award */
+    .award-entry { font-size: .82rem; }
+    .award-title { font-weight: 700; margin-bottom: 2px; }
+    .award-desc { color: var(--muted); line-height: 1.5; }
+
+    /* Interests */
+    .interest-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+    .interest-tag {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 12px;
+      padding: 2px 10px;
+      font-size: .75rem;
+    }
+
+    /* School project */
+    .school-proj { font-size: .82rem; }
+    .school-proj p { color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; max-width: 100%; }
+    }
+
+    @media (max-width: 680px) {
+      .body { grid-template-columns: 1fr; }
+      .main { border-right: none; border-bottom: 1px solid var(--border); }
+      .header { flex-direction: column; align-items: flex-start; }
+      .header-contact { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-name">
+      <h1>Vu Minh DINH</h1>
+      <div class="title">Software Engineer</div>
+    </div>
+    <div class="header-contact">
+      <div>📍 Montpellier, France</div>
+      <div>✉️ <a href="mailto:dinhvuminh.qb.vn@gmail.com">dinhvuminh.qb.vn@gmail.com</a></div>
+      <div>📞 +33 (0)6 42 34 23 07</div>
+      <div>🧓 34 years old</div>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <!-- MAIN COLUMN -->
+    <main class="main">
+
+      <!-- PROFESSIONAL EXPERIENCES -->
+      <section>
+        <h2 class="section-title">Professional Experience</h2>
+
+        <!-- Intrasense -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/intrasense.png" alt="">Intrasense</span>
+            <span class="exp-location">📍 Montpellier, France</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Jul. 2023 – Present · 2 yrs 9 mo</span>
+            <span class="exp-role">Software Developer – Medical Imaging</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> C++ development for medical imaging software (Visual Studio).</p>
+          <ul>
+            <li>Develop and maintain C++ components for clinical applications; improve performance and robustness.</li>
+            <li>Contribute to build/CI quality (tests, tooling) and collaborate with QA/clinical teams.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Visual Studio</span><span class="tag">Medical Imaging</span><span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+        <!-- GE Healthcare -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/gehealthcare.png" alt="">GE Healthcare</span>
+            <span class="exp-location">📍 Valbonne, France</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Mar. 2022 – Jul. 2023 · 1 yr 4 mo</span>
+            <span class="exp-role">Software Engineer</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> Probe health verification by analysing acoustic signals.</p>
+          <ul>
+            <li>Implemented a shared "Probe Check" library used across multiple GE teams.</li>
+            <li>Bootstrapped the project end-to-end: infrastructure, test framework, and CI/CD.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Visual Studio</span><span class="tag">Signal Processing</span><span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+        <!-- Amadeus 2021 -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/amadeus.png" alt="">Amadeus</span>
+            <span class="exp-location">📍 Villeneuve-Loubet, France</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Jul. 2021 – Mar. 2022 · 9 months</span>
+            <span class="exp-role">Software Engineer</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> Amadeus Airline Ticketing Software (C++, Linux, SAFe).</p>
+          <ul>
+            <li>Decommission of old airlines, removing their documents from the database (SQL).</li>
+            <li>Replace SHA-1 by Amadeus tokenizer for credit card encryption.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Linux</span><span class="tag">SQL</span><span class="tag">SAFe</span>
+          </div>
+        </div>
+
+        <!-- ECA Group -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/ecagroup.png" alt="">ECA Group</span>
+            <span class="exp-location">📍 La Garde, France</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Sep. 2020 – Jul. 2021 · 10 mo</span>
+            <span class="exp-role">Software Engineer – Robotics &amp; Defense</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> C++ development in robotics, automated defense system (marine, coastguard, hydrographic, land force).</p>
+          <ul>
+            <li>Real-time monitoring system for underwater drones with anomaly analysis using big data (C++, InfluxDB, Grafana).</li>
+            <li>OPC-UA bridge implementation using open-source lib open62541 (C++).</li>
+            <li>Working with Conan, CMake, Qt, Virtual Machine, VS Code, Linux.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Qt</span><span class="tag">InfluxDB</span><span class="tag">Grafana</span><span class="tag">OPC-UA</span><span class="tag">Linux</span>
+          </div>
+        </div>
+
+        <!-- Amadeus 2016 -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/amadeus.png" alt="">Amadeus</span>
+            <span class="exp-location">📍 Sophia Antipolis, France</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Dec. 2016 – Apr. 2020 · 3 yrs 5 mo</span>
+            <span class="exp-role">Software Engineer – Hotel Distribution</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> Amadeus Hotel Distribution Software (C++, Python, Linux, Agile).</p>
+          <ul>
+            <li>Hotel Content: descriptions &amp; images storage, security.</li>
+            <li>Hotel Search Engine: Soundex algorithm, new cache architecture.</li>
+            <li>Performance analysis with callgrind; JSON API creation (Swagger).</li>
+            <li>Unit testing (GMock, GTest), maintenance and bug fixing.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Python</span><span class="tag">Linux</span><span class="tag">Agile</span><span class="tag">Swagger</span><span class="tag">GTest</span>
+          </div>
+        </div>
+
+        <!-- Belcurves -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/belcurves.png" alt="">Belcurves Technologies France SARL</span>
+            <span class="exp-location">📍 Nice, France</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Jan. 2015 – Nov. 2016 · ~2 yrs</span>
+            <span class="exp-role">Software Engineer – 3D / HPC</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> Virtual fitting room — 3D modelization with AI, HPC-GPGPU and cloud technologies.</p>
+          <ul>
+            <li>Develop and maintain 3D software (C++/Qt/OpenGL).</li>
+            <li>Image processing, face detection, background removal (C++/OpenCV).</li>
+            <li>Web services (Python/Web2py); ML system to detect fault simulations (Python/R).</li>
+            <li>Website development &amp; testing (JavaScript/Qooxdoo/WebGL/Selenium).</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Qt</span><span class="tag">OpenGL</span><span class="tag">OpenCV</span><span class="tag">Python</span><span class="tag">WebGL</span>
+          </div>
+        </div>
+
+        <!-- Esaote -->
+        <div class="exp-entry">
+          <div class="exp-header">
+            <span class="exp-company"><img class="company-logo" src="logos/esaote.png" alt="">Esaote Europe B.V.</span>
+            <span class="exp-location">📍 Maastricht, Netherlands</span>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-period">Feb. 2014 – Jul. 2014 · 6 mo internship</span>
+            <span class="exp-role">Software Engineer Intern – GPU / Medical Imaging</span>
+          </div>
+          <p class="exp-project"><strong>Project:</strong> Real-time image processing on GPU (C++/CUDA/OpenGL); HPCF for ultrasound &amp; photo-acoustic imaging.</p>
+          <ul>
+            <li>Implemented and compared filter algorithms in C++ and MatLab.</li>
+            <li>GPU performance optimization (C++/CUDA); documented the HPCF framework.</li>
+          </ul>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">CUDA</span><span class="tag">OpenGL</span><span class="tag">MatLab</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS FOR FUN -->
+      <section>
+        <h2 class="section-title">Projects for Fun</h2>
+
+        <div class="project-entry">
+          <div class="project-name">
+            Smart Home
+            <span class="project-year">2018 – present</span>
+          </div>
+          <p class="project-desc">Complex home automation system with voice control, IoT integration and dashboards.</p>
+          <div class="tag-list">
+            <span class="tag">HomeAssistant</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">IoT</span><span class="tag">MariaDB</span><span class="tag">Grafana</span><span class="tag">PHP</span>
+          </div>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-name">
+            Language Book Analyser (Qt App)
+            <span class="project-year">2016 – 2017</span>
+          </div>
+          <p class="project-desc">Reads and analyses a foreign-language book; estimates comprehension percentage based on known vocabulary.</p>
+          <div class="tag-list">
+            <span class="tag">C++</span><span class="tag">Qt5</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- EDUCATION -->
+      <section>
+        <h2 class="section-title">Education</h2>
+
+        <div class="edu-entry">
+          <div class="edu-school">INSA Centre Val de Loire</div>
+          <div class="edu-degree">Engineer in Computer Science</div>
+          <div class="edu-meta">Sep. 2011 – Sep. 2014 · Blois, France</div>
+        </div>
+
+        <div class="edu-entry">
+          <div class="edu-school">College of Education</div>
+          <div class="edu-degree">Preparatory class</div>
+          <div class="edu-meta">Sep. 2009 – Sep. 2011 · Hue, Vietnam</div>
+        </div>
+
+        <div class="edu-entry">
+          <div class="edu-school">Baccalaureate S.</div>
+          <div class="edu-meta">2009</div>
+        </div>
+      </section>
+
+      <!-- SCHOOL PROJECT -->
+      <section>
+        <h2 class="section-title">School Project</h2>
+        <div class="school-proj">
+          <strong>Android ↔ Automaton App</strong>
+          <p>Communicating with a PLC via Modbus/TCP-IP/WiFi.</p>
+          <div class="tag-list" style="margin-top:5px;">
+            <span class="tag">Java</span><span class="tag">Android SDK</span><span class="tag">Modbus</span>
+          </div>
+          <p style="margin-top:5px;">Sep. 2013 – Jan. 2014</p>
+        </div>
+      </section>
+
+      <!-- AWARDS -->
+      <section>
+        <h2 class="section-title">Awards</h2>
+        <div class="award-entry">
+          <div class="award-title">2nd Prize – Vietnam National Computing Olympiad</div>
+          <div class="award-desc">Algorithmic competition (C++) · Dec. 2010 · Hanoi, Vietnam</div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section>
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skill-category">
+          <div class="skill-label">Programming</div>
+          <div class="skill-value">C / C++ / C#, Qt, Python, JavaScript, Matlab, CUDA, VBA, Selenium, UML, WebGL, OpenGL, SQL, PHP, Bash</div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Operating Systems</div>
+          <div class="skill-value">Windows · Linux · macOS</div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Databases</div>
+          <div class="skill-value">Oracle · Couchbase · InfluxDB · MySQL</div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-label">Tools</div>
+          <div class="skill-value">Git, SVN, Jira, Jenkins, Visual Studio, Eclipse, Unity, Grafana, Splunk, Conan, CMake</div>
+        </div>
+      </section>
+
+      <!-- LANGUAGES -->
+      <section>
+        <h2 class="section-title">Languages</h2>
+
+        <div class="lang-row">
+          <span class="lang-name">French</span>
+          <div class="dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+
+        <div class="lang-row">
+          <span class="lang-name">English</span>
+          <div class="dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+
+        <div class="lang-row">
+          <span class="lang-name">Vietnamese</span>
+          <div class="dots">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERESTS -->
+      <section>
+        <h2 class="section-title">Interests</h2>
+        <div class="interest-tags">
+          <span class="interest-tag">AI</span>
+          <span class="interest-tag">Home Automation</span>
+          <span class="interest-tag">C++</span>
+          <span class="interest-tag">Algorithmics</span>
+        </div>
+      </section>
+
+      <!-- REFERENCES -->
+      <section>
+        <h2 class="section-title">References</h2>
+        <p style="font-size:.82rem;color:var(--muted);">Available on request.</p>
+      </section>
+
+    </aside>
+  </div>
+</div>
+</body>
+</html>
