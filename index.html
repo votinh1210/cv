@@ -45,9 +45,24 @@
       padding: 32px 40px 28px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
       gap: 24px;
       flex-wrap: wrap;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,.6);
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
     .header-name h1 {
@@ -284,9 +299,12 @@
 
   <!-- HEADER -->
   <header class="header">
-    <div class="header-name">
-      <h1>Vu Minh DINH</h1>
-      <div class="title">Software Engineer</div>
+    <div class="header-left">
+      <img class="profile-photo" src="profile.png" alt="Vu Minh DINH" />
+      <div class="header-name">
+        <h1>Vu Minh DINH</h1>
+        <div class="title">Software Engineer</div>
+      </div>
     </div>
     <div class="header-contact">
       <div>📍 Nice, France</div>
