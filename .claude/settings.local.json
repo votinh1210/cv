@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command ':*)",
+      "Bash(python -c \"from PIL import Image; img = Image.open\\('C:/DEV/CV/photo.png'\\); print\\(img.size\\)\")",
+      "Bash(python -)"
+    ]
+  }
+}
